@@ -1,0 +1,14 @@
+training-runs/
+raw_data/
+datasets/
+*__pycache__*
+slurms_logs/
+wandb/
+*out*/
+test-runs/
+sdedit_outputs/
+data/
+paper_plot/
+sdedit_slurm_logs/
+training-runs-pretrain/
+pretrained_checkpoints/
