@@ -12,3 +12,4 @@ paper_plot/
 sdedit_slurm_logs/
 training-runs-pretrain/
 pretrained_checkpoints/
+*.DS_Store*
