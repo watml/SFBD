@@ -91,19 +91,11 @@ class Dataset(torch.utils.data.Dataset):
         if image is None:
             image = self._load_raw_image(raw_idx).astype(np.float32) 
             
-            # image = torch.from_numpy(image)
             if self.base_sigma > 0:
-                # seed = int(hashlib.sha256(np.ascontiguousarray(image)).hexdigest(), 16) % (2**32) if self.base_sigma > 0 else None # Hash the content and convert to a seed
                 rng = np.random.default_rng(idx + self.base_noise_seed)
-                # rng = torch.Generator(device='cpu')
-                # rng.manual_seed(idx + self.base_noise_seed)
-                noise = rng.normal(0, self.base_sigma, image.shape)  # (C, H, W)                
-                # breakpoint()
-                # noise = torch.randn( (image.shape), generator=rng)                
+                noise = rng.normal(0, self.base_sigma, image.shape)  # (C, H, W)                         
                 if hasattr(self, 'mollifier'):
-                    # raise NotImplementedError("Mollifier not implemented for base_sigma > 0")
                     noise = self.mollifier.mollify(noise[None, :])[0]
-                # noise = 0
             else:
                 noise = 0     
                 
